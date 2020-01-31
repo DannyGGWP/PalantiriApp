@@ -3,15 +3,37 @@ import QtQuick.Controls 2.5
 
 Page {
     id: page
-    property int autoLowCount: 0
-    property int autoHighCount: 0
-    property int lowCount: 0
-    property int highCount: 0
+    //    property int autoLowCount: 0
+    //    property int autoHighCount: 0
+    //    property int lowCount: 0
+    //    property int highCount: 0
+
+    // All Propery Aliases to beable to do real work in main.qml
+    property alias teamNum: teamNum
+    property alias autoLowText: autoLowText
+    property alias autoLowPlus: autoLowPlus
+    property alias autoHighPlus: autoHighPlus
+    property alias autoHighText: autoHighText
+    property alias autoLineSwitch: autoLineSwitch
+    property alias submit: submit
+    property alias reset: reset
+    property alias alliancePos: alliancePos
+    property alias startPos: startPos
+    property alias matchNum: matchNum
+    property alias highText: highText
+    property alias highPlus: highPlus
+    property alias lowPlus: lowPlus
+    property alias lowText: lowText
+    property alias stageTwoSwitch: stageTwoSwitch
+    property alias stageThreeSwitch: stageThreeSwitch
+    property alias climbedSwitch: climbedSwitch
+    property alias balancedSwitch: balancedSwitch
     TextField {
         id: teamNum
         x: 480
         y: 0
-        text: qsTr("Team #")
+        text: qsTr("")
+        placeholderText: "Team #"
         validator: IntValidator {
             bottom: 1
             top: 10000
@@ -22,7 +44,8 @@ Page {
         id: matchNum
         x: 480
         y: 40
-        text: qsTr("Match #")
+        text: qsTr("")
+        placeholderText: "Match #"
         validator: IntValidator {
             bottom: 1
             top: 100
@@ -204,64 +227,6 @@ Page {
         text: qsTr("Reset")
     }
 
-    Connections {
-        target: autoLowPlus
-        onClicked: {
-            autoLowCount++
-            autoLowText.text = autoLowCount
-        }
-    }
-
-    Connections {
-        target: autoHighPlus
-        onClicked: {
-            autoHighCount++
-            autoHighText.text = autoHighCount
-        }
-    }
-
-    Connections {
-        target: lowPlus
-        onClicked: {
-            lowCount++
-            lowText.text = lowCount
-        }
-    }
-
-    Connections {
-        target: highPlus
-        onClicked: {
-            highCount++
-            highText.text = highCount
-        }
-    }
-
-    Connections {
-        target: submit
-        onClicked: print("clicked")
-    }
-
-    Connections {
-        target: reset
-        onClicked: {
-            highCount = 0
-            lowCount = 0
-            autoHighCount = 0
-            autoLowCount = 0
-            highText.text = highCount
-            lowText.text = lowCount
-            autoHighText.text = autoHighCount
-            autoLowText.text = autoLowCount
-            climbedSwitch.checked = false
-            balancedSwitch.checked = false
-            stageThreeSwitch.checked = false
-            stageTwoSwitch.checked = false
-            autoLineSwitch.checked = false
-            alliancePos.currentIndex = 0
-            startPos.currentIndex = 0
-        }
-    }
-
     ListView {
         id: alliancePos
         x: 461
@@ -271,10 +236,9 @@ Page {
         anchors.right: parent.right
         anchors.rightMargin: 40
         transformOrigin: Item.Center
-        model: ["Blue #1", "Blue #2", "Blue #3", "Red #1", "Red #2", "Red #3"]
+        model: ["Blue 1", "Blue 2", "Blue 3", "Red 1", "Red 2", "Red 3"]
         delegate: RadioDelegate {
             text: modelData
-            checked: index == 0
             anchors.right: parent.right
         }
     }
