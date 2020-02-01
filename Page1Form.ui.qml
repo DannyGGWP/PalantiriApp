@@ -17,8 +17,6 @@ Page {
     property alias autoLineSwitch: autoLineSwitch
     property alias submit: submit
     property alias reset: reset
-    property alias alliancePos: alliancePos
-    property alias startPos: startPos
     property alias matchNum: matchNum
     property alias highText: highText
     property alias highPlus: highPlus
@@ -28,6 +26,8 @@ Page {
     property alias stageThreeSwitch: stageThreeSwitch
     property alias climbedSwitch: climbedSwitch
     property alias balancedSwitch: balancedSwitch
+    property alias defenceSwitch: defenceSwitch
+    property alias notesText: notesText
     TextField {
         id: teamNum
         x: 480
@@ -57,7 +57,7 @@ Page {
         x: 13
         y: 200
         width: 346
-        height: 257
+        height: 308
         title: qsTr("Tele Op")
 
         Rectangle {
@@ -136,6 +136,13 @@ Page {
             x: 171
             y: 162
             text: qsTr("Balanced")
+        }
+
+        Switch {
+            id: defenceSwitch
+            x: 172
+            y: 203
+            text: qsTr("Played Defence")
         }
     }
 
@@ -227,33 +234,14 @@ Page {
         text: qsTr("Reset")
     }
 
-    ListView {
-        id: alliancePos
-        x: 461
-        y: 90
-        width: 139
-        height: 301
-        anchors.right: parent.right
-        anchors.rightMargin: 40
-        transformOrigin: Item.Center
-        model: ["Blue 1", "Blue 2", "Blue 3", "Red 1", "Red 2", "Red 3"]
-        delegate: RadioDelegate {
-            text: modelData
-            anchors.right: parent.right
-        }
-    }
-
-    ListView {
-        id: startPos
-        x: 369
-        y: 89
-        width: 139
-        height: 301
-        model: ["Left", "Right", "Center"]
-        delegate: RadioDelegate {
-            text: modelData
-            anchors.right: parent.right
-        }
+    TextArea {
+        id: notesText
+        x: 399
+        y: 117
+        width: 354
+        height: 213
+        text: qsTr("")
+        placeholderText: "Notes"
     }
 }
 

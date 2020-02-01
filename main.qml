@@ -32,6 +32,7 @@ ApplicationWindow {
     property bool didThirdStageWheel: false
     property bool robotHang: false
     property bool balancedHang: false
+    property bool playedDefence: false
     property string robotStartingPos: ""
     property string teamAlliancePos: ""
 
@@ -65,8 +66,19 @@ ApplicationWindow {
             balancedSwitch.onClicked: {
                 balancedHang = handleSwitchSet(balancedSwitch.position)
             }
+            defenceSwitch.onClicked: {
+                playedDefence = handleSwitchSet(defenceSwitch.position)
+            }
 
             reset.onClicked: {
+                resetForm()
+            }
+
+            submit.onClicked: {
+                addResult()
+            }
+            function resetForm()
+            {
                 highCount = 0
                 lowCount = 0
                 autoHighCount = 0
@@ -87,12 +99,10 @@ ApplicationWindow {
                 stageThreeSwitch.checked = false
                 stageTwoSwitch.checked = false
                 autoLineSwitch.checked = false
-
+                defenceSwitch.checked = false
+                notesText.text = ""
             }
 
-            submit.onClicked: {
-                addResult()
-            }
             function addResult()
             {
                 // Validate Form
@@ -112,15 +122,18 @@ ApplicationWindow {
                                 didThirdStageWheel,
                                 robotHang,
                                 balancedHang,
-                                startPos.model[startPos.currentIndex],
-                                alliancePos.model[alliancePos.currentIndex]
+                                playedDefence,
+                                notesText.text
                             ];
                     //console.log(results.toString())
                     db.transaction( function(tx){
 
                         DbFunc.addMatchResult(tx,results)
                     })
-
+                    resetForm()
+                }
+                else {
+                    messageDialog.open()
                 }
             }
         }
@@ -139,7 +152,7 @@ ApplicationWindow {
         title: "Error! "
         text: "Team # or Match# not set!"
         onAccepted: {
-            console.log("And of course you could only agree.")
+
             Qt.quit()
         }
 
