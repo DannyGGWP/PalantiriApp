@@ -5,6 +5,7 @@ import QtQuick.LocalStorage 2.12
 import QtQuick.Dialogs 1.3
 import "dbFunctions.js" as DbFunc
 ApplicationWindow {
+    id: mainWindow
     visible: true
     width: 1024
     height: 768
@@ -21,8 +22,10 @@ ApplicationWindow {
                         )
             settings.isFirstRun = false
         }
-    }
 
+    }
+    property string compString: ""
+    property int allianceIndex: -1
     property int autoLowCount: 0
     property int autoHighCount: 0
     property int lowCount: 0
@@ -33,12 +36,12 @@ ApplicationWindow {
     property bool robotHang: false
     property bool balancedHang: false
     property bool playedDefence: false
-    property string robotStartingPos: ""
-    property string teamAlliancePos: ""
 
     Settings {
         id: settings
         property bool isFirstRun: true
+        property alias allianceIndex: mainWindow.allianceIndex
+        property alias compString: mainWindow.compString
     }
 
     SwipeView {
@@ -77,6 +80,7 @@ ApplicationWindow {
             submit.onClicked: {
                 addResult()
             }
+
             function resetForm()
             {
                 highCount = 0
@@ -142,8 +146,18 @@ ApplicationWindow {
             exportButton.onClicked: {
                 if (exportFile.text.length > 0)
                 {
-                    exporter.exportDBtoLoc(exportFile.text)
+                    exporter.exportDBtoLoc(exportFile.text+".sqlite")
                 }
+            }
+            allianceStation.onCurrentIndexChanged: {
+                allianceIndex = allianceStation.currentIndex
+            }
+            compName.onTextChanged: {
+                compString = compName.text
+            }
+            Component.onCompleted: {
+                compName.text = compString
+                allianceStation.currentIndex = allianceIndex
             }
         }
     }
@@ -153,7 +167,6 @@ ApplicationWindow {
         text: "Team # or Match# not set!"
         onAccepted: {
 
-            Qt.quit()
         }
 
     }
@@ -174,10 +187,10 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Page 1")
+            text: qsTr("Match Scouting")
         }
         TabButton {
-            text: qsTr("Page 2")
+            text: qsTr("Configuration Tab")
         }
     }
 }
