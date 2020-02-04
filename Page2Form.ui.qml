@@ -15,10 +15,11 @@ Page {
     property alias exportButton: exportButton
     property alias allianceStation: allianceStation
     property alias compName: compName
+    property alias updateSettings: updateSettings
     GroupBox {
         id: exportControls
         width: 200
-        height: 200
+        height: 275
         anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.top: parent.top
@@ -62,8 +63,8 @@ Page {
 
     GroupBox {
         id: compConfig
-        width: 200
-        height: 200
+        width: 196
+        height: 275
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.left: exportControls.right
@@ -72,15 +73,15 @@ Page {
 
         ComboBox {
             id: allianceStation
-            y: 128
+            y: 141
             height: 48
             textRole: qsTr("")
             anchors.right: parent.right
             anchors.rightMargin: 0
             anchors.left: parent.left
             anchors.leftMargin: 0
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 0
+            anchors.bottom: updateSettings.top
+            anchors.bottomMargin: 14
             currentIndex: -1
             model: ["Red 1", "Red 2", "Red 3", "Blue 1", "Blue 2", "Blue 3"]
         }
@@ -107,12 +108,22 @@ Page {
             anchors.bottom: allianceStation.top
             anchors.bottomMargin: 6
         }
+
+        Button {
+            id: updateSettings
+            y: 203
+            text: qsTr("Update Settings")
+            anchors.left: parent.left
+            anchors.leftMargin: 19
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 0
+        }
     }
 }
 
 /*##^##
 Designer {
-    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}
+    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}D{i:10;anchors_x:19}
 }
 ##^##*/
 

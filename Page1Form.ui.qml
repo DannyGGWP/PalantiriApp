@@ -8,8 +8,7 @@ Page {
     //    property int lowCount: 0
     //    property int highCount: 0
 
-    // All Propery Aliases to beable to do real work in main.qml
-    property alias teamNum: teamNum
+    // All Propery Aliases to be vable to do real work in main.qml
     property alias autoLowText: autoLowText
     property alias autoLowPlus: autoLowPlus
     property alias autoHighPlus: autoHighPlus
@@ -17,7 +16,6 @@ Page {
     property alias autoLineSwitch: autoLineSwitch
     property alias submit: submit
     property alias reset: reset
-    property alias matchNum: matchNum
     property alias highText: highText
     property alias highPlus: highPlus
     property alias lowPlus: lowPlus
@@ -28,6 +26,8 @@ Page {
     property alias balancedSwitch: balancedSwitch
     property alias defenceSwitch: defenceSwitch
     property alias notesText: notesText
+    property alias teamNum: teamNum
+    property alias matchNum: matchNum
     title: "Scouting"
     font.wordSpacing: 0
 
@@ -38,17 +38,56 @@ Page {
 
         Flow {
             id: element
-            anchors.rightMargin: 0
+            x: 0
+            y: 0
+            width: 1059
+            height: 748
             spacing: 10
             layoutDirection: Qt.LeftToRight
             flow: Flow.LeftToRight
-            anchors.fill: parent
 
             Column {
                 id: column
                 width: 345
-                height: 469
+                height: 580
                 spacing: 10
+
+                GroupBox {
+                    id: matchInfoBox
+                    width: 346
+                    height: 125
+                    title: qsTr("Match Info")
+
+                    TextField {
+                        id: teamNum
+                        x: 202
+                        text: qsTr("")
+                        anchors.right: parent.right
+                        anchors.rightMargin: 0
+                        anchors.top: parent.top
+                        anchors.topMargin: 0
+                        placeholderText: "Team #"
+                        validator: IntValidator {
+                            top: 10000
+                            bottom: 1
+                        }
+                    }
+
+                    TextField {
+                        id: matchNum
+                        x: 202
+                        text: qsTr("")
+                        anchors.right: parent.right
+                        anchors.rightMargin: 0
+                        placeholderText: "Match #"
+                        validator: IntValidator {
+                            top: 100
+                            bottom: 1
+                        }
+                        anchors.topMargin: 0
+                        anchors.top: teamNum.bottom
+                    }
+                }
 
                 GroupBox {
                     id: groupBox1
@@ -248,79 +287,51 @@ Page {
                 }
             }
 
-            GroupBox {
-                id: groupBox2
-                x: 365
-                y: 10
-                width: 264
-                height: 466
-                title: qsTr("Other")
+            Column {
+                id: column1
+                width: 263
+                height: 400
 
-                TextArea {
-                    id: notesText
-                    width: 238
-                    text: qsTr("")
-                    anchors.left: parent.left
-                    anchors.leftMargin: -3
-                    anchors.top: matchNum.bottom
-                    anchors.topMargin: 53
-                    anchors.bottom: submit.top
-                    anchors.bottomMargin: 6
-                    placeholderText: "Notes"
-                }
+                GroupBox {
+                    id: groupBox2
+                    width: 264
+                    height: 330
+                    title: qsTr("Other")
 
-                TextField {
-                    id: teamNum
-                    x: 127
-                    text: qsTr("")
-                    anchors.top: parent.top
-                    anchors.topMargin: 0
-                    anchors.right: parent.right
-                    anchors.rightMargin: -7
-                    placeholderText: "Team #"
-                    validator: IntValidator {
-                        bottom: 1
-                        top: 10000
+                    TextArea {
+                        id: notesText
+                        width: 238
+                        text: qsTr("")
+                        anchors.left: parent.left
+                        anchors.leftMargin: -3
+                        anchors.bottom: submit.top
+                        anchors.bottomMargin: 6
+                        placeholderText: "Notes"
                     }
-                }
 
-                TextField {
-                    id: matchNum
-                    x: 127
-                    text: qsTr("")
-                    anchors.top: teamNum.bottom
-                    anchors.topMargin: 0
-                    anchors.right: parent.right
-                    anchors.rightMargin: -7
-                    placeholderText: "Match #"
-                    validator: IntValidator {
-                        bottom: 1
-                        top: 100
+                    Button {
+                        id: submit
+                        y: 360
+                        width: 125
+                        height: 91
+                        text: qsTr("Submit Match")
+                        anchors.left: parent.left
+                        anchors.leftMargin: -3
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 0
                     }
-                }
 
-                Button {
-                    id: submit
-                    y: 360
-                    width: 125
-                    height: 91
-                    text: qsTr("Submit Match")
-                    anchors.left: parent.left
-                    anchors.leftMargin: -3
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 0
-                }
-
-                Button {
-                    id: reset
-                    y: 360
-                    width: 107
-                    height: 91
-                    text: qsTr("Reset")
-                    anchors.left: submit.right
-                    anchors.leftMargin: 6
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 0
+                    Button {
+                        id: reset
+                        y: 360
+                        width: 107
+                        height: 91
+                        text: qsTr("Reset")
+                        anchors.left: submit.right
+                        anchors.leftMargin: 6
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 0
+                    }
                 }
             }
         }
@@ -329,10 +340,11 @@ Page {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:768;width:1080}D{i:5;anchors_x:"-5";anchors_y:11}D{i:7;anchors_x:"-5";anchors_y:62}
-D{i:8;anchors_x:62;anchors_y:62}D{i:9;anchors_x:62;anchors_y:11}D{i:11;anchors_y:0}
-D{i:4;anchors_x:13;anchors_y:10}D{i:12;anchors_x:365;anchors_y:10}D{i:24;anchors_x:13;anchors_y:168}
-D{i:2;anchors_height:748;anchors_width:1059;anchors_x:0;anchors_y:0}D{i:1;anchors_height:200;anchors_width:200}
+    D{i:0;autoSize:true;height:768;width:1080}D{i:7;anchors_y:50}D{i:10;anchors_x:"-5";anchors_y:11}
+D{i:12;anchors_x:"-5";anchors_y:62}D{i:13;anchors_x:62;anchors_y:62}D{i:14;anchors_x:62;anchors_y:11}
+D{i:16;anchors_y:0}D{i:9;anchors_x:13;anchors_y:10}D{i:17;anchors_x:365;anchors_y:10}
+D{i:30;anchors_x:13;anchors_y:168}D{i:2;anchors_height:748;anchors_width:1059;anchors_x:0;anchors_y:0}
+D{i:1;anchors_height:200;anchors_width:200}
 }
 ##^##*/
 

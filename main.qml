@@ -9,23 +9,25 @@ ApplicationWindow {
     visible: true
     width: 1024
     height: 768
-    title: qsTr("Tabs")
+    title: qsTr("Scouting App")
 
     Component.onCompleted: {
         var db = DbFunc.getDbHandle()
+        db.transaction( function(tx){
+                        DbFunc.init(tx,compString,allianceStationList[allianceIndex])
+                    }
+                    )
         if (settings.isFirstRun == true)
         {
 
-            db.transaction( function(tx){
-                            DbFunc.init(tx)
-                        }
-                        )
+
             settings.isFirstRun = false
         }
 
     }
-    property string compString: ""
-    property int allianceIndex: -1
+    property var allianceStationList : ["red_1","red_2","red_3","blue_1","blue_2","blue_3"]
+    property string compString: "default"
+    property int allianceIndex: 0
     property int autoLowCount: 0
     property int autoHighCount: 0
     property int lowCount: 0
@@ -115,8 +117,8 @@ ApplicationWindow {
                     var db = DbFunc.getDbHandle()
                     //Form is valid write to DB
                     var results = [
-                            teamNum.text,
                                 matchNum.text,
+                                teamNum.text,
                                 autoLowCount,
                                 autoHighCount,
                                 lowCount,
@@ -130,13 +132,22 @@ ApplicationWindow {
                                 notesText.text
                             ];
                     //console.log(results.toString())
-                    db.transaction( function(tx){
+                    try {
+                        db.transaction( function(tx){
 
-                        DbFunc.addMatchResult(tx,results)
-                    })
-                    resetForm()
+                            DbFunc.addMatchResult(tx,results)
+                        })
+                        resetForm()
+                    }
+                    catch (err){
+                        messageDialog.text = "Error Inserting results into table:" + err
+                        messageDialog.open()
+                    }
+
+
                 }
                 else {
+                    messageDialog.text = "Team # or Match# not set!"
                     messageDialog.open()
                 }
             }
@@ -155,6 +166,14 @@ ApplicationWindow {
             compName.onTextChanged: {
                 compString = compName.text
             }
+            updateSettings.onClicked: {
+                var db = DbFunc.getDbHandle()
+                db.transaction( function(tx){
+                                DbFunc.init(tx,compString,allianceStationList[allianceIndex])
+                            }
+                            )
+            }
+
             Component.onCompleted: {
                 compName.text = compString
                 allianceStation.currentIndex = allianceIndex
