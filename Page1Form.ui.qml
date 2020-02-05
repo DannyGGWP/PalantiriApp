@@ -3,11 +3,17 @@ import QtQuick.Controls 2.5
 
 Page {
     id: page
+
     //    property int autoLowCount: 0
     //    property int autoHighCount: 0
     //    property int lowCount: 0
     //    property int highCount: 0
-
+    header: Label {
+        id: headerText
+        text: qsTr("Scouting")
+        font.pixelSize: Qt.application.font.pixelSize * 4
+        padding: 10
+    }
     // All Propery Aliases to be vable to do real work in main.qml
     property alias autoLowText: autoLowText
     property alias autoLowPlus: autoLowPlus
@@ -28,18 +34,17 @@ Page {
     property alias notesText: notesText
     property alias teamNum: teamNum
     property alias matchNum: matchNum
-    title: "Scouting"
-    font.wordSpacing: 0
-
+    property alias headerText: headerText
     ScrollView {
         id: scrollView
+        anchors.topMargin: 51
         padding: 10
         anchors.fill: parent
 
         Flow {
             id: element
-            x: 0
-            y: 0
+            x: -10
+            y: -63
             width: 1059
             height: 748
             spacing: 10
@@ -337,14 +342,3 @@ Page {
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:768;width:1080}D{i:7;anchors_y:50}D{i:10;anchors_x:"-5";anchors_y:11}
-D{i:12;anchors_x:"-5";anchors_y:62}D{i:13;anchors_x:62;anchors_y:62}D{i:14;anchors_x:62;anchors_y:11}
-D{i:16;anchors_y:0}D{i:9;anchors_x:13;anchors_y:10}D{i:17;anchors_x:365;anchors_y:10}
-D{i:30;anchors_x:13;anchors_y:168}D{i:2;anchors_height:748;anchors_width:1059;anchors_x:0;anchors_y:0}
-D{i:1;anchors_height:200;anchors_width:200}
-}
-##^##*/
-

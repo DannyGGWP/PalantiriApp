@@ -27,6 +27,7 @@ ApplicationWindow {
     }
     property var allianceStationList : ["red_1","red_2","red_3","blue_1","blue_2","blue_3"]
     property string compString: "default"
+    property string allianceStationString: "Red 1"
     property int allianceIndex: 0
     property int autoLowCount: 0
     property int autoHighCount: 0
@@ -38,6 +39,8 @@ ApplicationWindow {
     property bool robotHang: false
     property bool balancedHang: false
     property bool playedDefence: false
+
+    property alias scoutingPage: scoutingPage
 
     Settings {
         id: settings
@@ -52,6 +55,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         Page1Form {
+            id: scoutingPage
             autoLowPlus.onClicked: { autoLowCount++; autoLowText.text = autoLowCount; }
             autoHighPlus.onClicked: {autoHighText.text = ++autoHighCount; }
             lowPlus.onClicked: { lowText.text = ++lowCount}
@@ -162,6 +166,8 @@ ApplicationWindow {
             }
             allianceStation.onCurrentIndexChanged: {
                 allianceIndex = allianceStation.currentIndex
+                allianceStationString = allianceStation.currentText
+                scoutingPage.headerText.text = allianceStationString + " Scouting"
             }
             compName.onTextChanged: {
                 compString = compName.text
@@ -172,11 +178,16 @@ ApplicationWindow {
                                 DbFunc.init(tx,compString,allianceStationList[allianceIndex])
                             }
                             )
+                allianceIndex = allianceStation.currentIndex
+                allianceStationString = allianceStation.currentText
+                scoutingPage.headerText.text = allianceStationString + " Scouting"
             }
 
             Component.onCompleted: {
                 compName.text = compString
                 allianceStation.currentIndex = allianceIndex
+                allianceStationString = allianceStation.currentText
+                scoutingPage.headerText.text = allianceStationString + " Scouting"
             }
         }
     }
