@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         dbexporter.cpp \
-        main.cpp
+        main.cpp \
+        scoutingclient.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,4 +34,5 @@ DISTFILES += \
     db_model.qmodel
 
 HEADERS += \
-    dbexporter.h
+    dbexporter.h \
+    scoutingclient.h
