@@ -9,5 +9,5 @@ DBExporter::DBExporter(QString offlineStoragePath, QObject *parent) : QObject(pa
 void DBExporter::exportDBtoLoc(QString nameOfCopy)
 {
     QString newFilePath = QString("%1/%2").arg(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).arg(nameOfCopy);
-    QFile::copy(m_offlineStoragePath.append(".sqlite"),newFilePath);
+    QFile::copy(newFilePath.append(".sqlite"),newFilePath);
 }
