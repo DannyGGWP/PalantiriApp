@@ -182,6 +182,32 @@ ApplicationWindow {
                 allianceStationString = allianceStation.currentText
                 scoutingPage.headerText.text = allianceStationString + " Scouting"
             }
+            uploadButton.onPressed:
+            {
+                if (serverUrl.length <= 0)
+                {
+                    messageDialog.text = "Please set a server URL"
+                    messageDialog.open()
+                }
+                else {
+                    var db = DbFunc.getDbHandle()
+                    db.transaction(function (tx){
+                        var res = DbFunc.selectAllResults(tx)
+                        scoutingAPI.setServerUrl(serverUrl.text)
+                        var progressInc = 1.0/res.rows.length;
+                        var progress = 0.0;
+                        for (var i = 0; i<res.rows.length; i++)
+                        {
+                            var resMap = res.rows.item(i);
+                            resMap["compLoc"] = compName
+                            resMap["allianceStation"] = allianceStationString
+                            scoutingAPI.postMatch(resMap);
+                            uploadProgress = progress += progressInc;
+                        }
+                    }
+                    )
+                }
+            }
 
             Component.onCompleted: {
                 compName.text = compString

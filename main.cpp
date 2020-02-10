@@ -5,7 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "dbexporter.h"
-
+#include "scoutingclient.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("ScoutingApp");
     QTextStream ts(stdout);
     QQmlApplicationEngine engine;
+    ScoutingClient sClient;
+    engine.rootContext()->setContextProperty("scoutingAPI",&sClient);
     DBExporter dbe(engine.offlineStorageDatabaseFilePath("CompMatchDB"));
     engine.rootContext()->setContextProperty("exporter", &dbe);
     ts << engine.offlineStoragePath() << endl;

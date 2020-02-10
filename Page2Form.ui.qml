@@ -16,6 +16,9 @@ Page {
     property alias allianceStation: allianceStation
     property alias compName: compName
     property alias updateSettings: updateSettings
+    property alias serverUrl: serverUrl
+    property alias uploadProgress: uploadProgressBar.value
+    property alias uploadButton: uploadButton
     GroupBox {
         id: exportControls
         width: 200
@@ -119,11 +122,48 @@ Page {
             anchors.bottomMargin: 0
         }
     }
+    GroupBox {
+        id: groupBox
+        x: 418
+        y: 46
+        width: 174
+        height: 274
+        title: qsTr("Server Upload")
+
+        TextField {
+            id: serverUrl
+            height: 44
+            text: qsTr("")
+            anchors.right: parent.right
+            anchors.leftMargin: 0
+            anchors.topMargin: 21
+            placeholderText: "Scouting Server URL"
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.rightMargin: 0
+        }
+
+        Button {
+            id: uploadButton
+            x: 29
+            y: 201
+            text: qsTr("Upload")
+        }
+
+        ProgressBar {
+            id: uploadProgressBar
+            x: -12
+            y: 99
+            width: 174
+            height: 34
+            value: 0.0
+        }
+    }
 }
 
 /*##^##
 Designer {
-    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}D{i:10;anchors_x:19}
+    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}
 }
 ##^##*/
 

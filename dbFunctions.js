@@ -22,3 +22,8 @@ function addMatchResult(tx,resultsArry) {
     console.log("SQL << " + insertStatement)
     tx.executeSql(insertStatement,resultsArry)
 }
+
+function selectAllResults(tx) {
+    var select = "SELECT * FROM " +tableName
+    return tx.executeSql(select)
+}
