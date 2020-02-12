@@ -19,6 +19,11 @@ Page {
     property alias autoLowPlus: autoLowPlus
     property alias autoHighPlus: autoHighPlus
     property alias autoHighText: autoHighText
+    property alias autoLowMinus: autoLowMinus
+    property alias autoHighMinus: autoHighMinus
+    property alias lowMinus: lowMinus
+    property alias highMinus: highMinus
+
     property alias autoLineSwitch: autoLineSwitch
     property alias submit: submit
     property alias reset: reset
@@ -35,6 +40,7 @@ Page {
     property alias teamNum: teamNum
     property alias matchNum: matchNum
     property alias headerText: headerText
+    property alias winOrLoseSwitch: winOrLoss
     ScrollView {
         id: scrollView
         anchors.topMargin: 51
@@ -97,7 +103,7 @@ Page {
                 GroupBox {
                     id: groupBox1
                     width: 346
-                    height: 152
+                    height: 185
                     title: qsTr("Auto")
 
                     Rectangle {
@@ -125,7 +131,7 @@ Page {
 
                     Button {
                         id: autoLowPlus
-                        text: qsTr("Low+")
+                        text: qsTr("+Low")
                         anchors.left: parent.left
                         anchors.leftMargin: -5
                         anchors.top: autoLowDisp.bottom
@@ -134,7 +140,7 @@ Page {
 
                     Button {
                         id: autoHighPlus
-                        text: qsTr("High+")
+                        text: qsTr("+High")
                         anchors.left: autoLowPlus.right
                         anchors.leftMargin: 3
                         anchors.top: autoHighDisp.bottom
@@ -171,6 +177,28 @@ Page {
                         anchors.top: parent.top
                         anchors.topMargin: 0
                     }
+
+                    Button {
+                        id: autoHighMinus
+                        x: 62
+                        y: 106
+                        text: qsTr("-High")
+                        anchors.topMargin: -9
+                        anchors.top: autoHighPlus.bottom
+                        anchors.leftMargin: 3
+                        anchors.left: autoLowPlus.right
+                    }
+
+                    Button {
+                        id: autoLowMinus
+                        x: 2
+                        y: 101
+                        text: qsTr("-Low")
+                        anchors.topMargin: -9
+                        anchors.top: autoLowPlus.bottom
+                        anchors.leftMargin: -5
+                        anchors.left: parent.left
+                    }
                 }
 
                 GroupBox {
@@ -201,7 +229,7 @@ Page {
 
                     Button {
                         id: highPlus
-                        text: qsTr("High+")
+                        text: qsTr("+High")
                         anchors.left: lowPlus.right
                         anchors.leftMargin: 6
                         anchors.top: highDisp.bottom
@@ -210,7 +238,7 @@ Page {
 
                     Button {
                         id: lowPlus
-                        text: qsTr("Low+")
+                        text: qsTr("+Low")
                         anchors.left: parent.left
                         anchors.leftMargin: 0
                         anchors.top: lowDisp.bottom
@@ -289,6 +317,28 @@ Page {
                         anchors.top: balancedSwitch.bottom
                         anchors.topMargin: 1
                     }
+
+                    Button {
+                        id: highMinus
+                        x: 70
+                        y: 111
+                        text: qsTr("-High")
+                        anchors.topMargin: 42
+                        anchors.top: highDisp.bottom
+                        anchors.leftMargin: 6
+                        anchors.left: lowPlus.right
+                    }
+
+                    Button {
+                        id: lowMinus
+                        x: -3
+                        y: 118
+                        text: qsTr("-Low")
+                        anchors.topMargin: -8
+                        anchors.top: lowPlus.bottom
+                        anchors.leftMargin: 0
+                        anchors.left: parent.left
+                    }
                 }
             }
 
@@ -337,8 +387,27 @@ Page {
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 0
                     }
+
+                    Switch {
+                        id: winOrLoss
+                        x: 105
+                        width: 135
+                        height: 48
+                        text: qsTr("Won Match")
+                        anchors.right: parent.right
+                        anchors.rightMargin: 0
+                        anchors.top: parent.top
+                        anchors.topMargin: 12
+                    }
                 }
             }
         }
     }
 }
+
+/*##^##
+Designer {
+    D{i:39;anchors_y:12}
+}
+##^##*/
+

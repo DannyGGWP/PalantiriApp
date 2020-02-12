@@ -125,7 +125,7 @@ Page {
     GroupBox {
         id: groupBox
         x: 418
-        y: 46
+        y: 1
         width: 174
         height: 274
         title: qsTr("Server Upload")
@@ -148,6 +148,8 @@ Page {
             x: 29
             y: 201
             text: qsTr("Upload")
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 1
         }
 
         ProgressBar {

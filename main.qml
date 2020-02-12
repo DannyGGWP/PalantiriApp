@@ -39,7 +39,7 @@ ApplicationWindow {
     property bool robotHang: false
     property bool balancedHang: false
     property bool playedDefence: false
-
+    property bool winOrLose: false
     property alias scoutingPage: scoutingPage
 
     Settings {
@@ -60,6 +60,10 @@ ApplicationWindow {
             autoHighPlus.onClicked: {autoHighText.text = ++autoHighCount; }
             lowPlus.onClicked: { lowText.text = ++lowCount}
             highPlus.onClicked: { highText.text = ++highCount}
+            autoLowMinus.onClicked: {autoLowText.text = --autoLowCount;}
+            autoHighMinus.onClicked: {autoHighText.text = --autoHighCount; }
+            lowMinus.onClicked: {lowText.text = --lowCount;}
+            highMinus.onClicked: {highText.text = --highCount;}
             autoLineSwitch.onClicked: {
                 droveInAuto = handleSwitchSet(autoLineSwitch.position);
             }
@@ -77,6 +81,10 @@ ApplicationWindow {
             }
             defenceSwitch.onClicked: {
                 playedDefence = handleSwitchSet(defenceSwitch.position)
+            }
+            winOrLoseSwitch.onClicked:
+            {
+                winOrLose = handleSwitchSet(winOrLoseSwitch.position)
             }
 
             reset.onClicked: {
@@ -110,6 +118,7 @@ ApplicationWindow {
                 stageTwoSwitch.checked = false
                 autoLineSwitch.checked = false
                 defenceSwitch.checked = false
+                winOrLoseSwitch.checked = false
                 notesText.text = ""
             }
 
@@ -133,6 +142,7 @@ ApplicationWindow {
                                 robotHang,
                                 balancedHang,
                                 playedDefence,
+                                winOrLose,
                                 notesText.text
                             ];
                     //console.log(results.toString())
@@ -199,7 +209,7 @@ ApplicationWindow {
                         for (var i = 0; i<res.rows.length; i++)
                         {
                             var resMap = res.rows.item(i);
-                            resMap["compLoc"] = compName
+                            resMap["compLoc"] = compString
                             resMap["allianceStation"] = allianceStationString
                             scoutingAPI.postMatch(resMap);
                             uploadProgress = progress += progressInc;

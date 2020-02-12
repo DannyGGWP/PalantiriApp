@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-    app.setOrganizationName("Team 232 Programming");
+    app.setOrganizationName("Team 237 Programming");
     app.setOrganizationDomain("ScoutingApp");
     QTextStream ts(stdout);
     QQmlApplicationEngine engine;
