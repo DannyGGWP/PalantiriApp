@@ -1,3 +1,24 @@
+
+
+/*
+ *
+ *   This file is part of PalantiriApp.
+ *
+ *    PalantiriApp is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    PalantiriApp is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with PalantiriApp.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ *    Copyright 2020 Team 237
+ */
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
@@ -161,11 +182,36 @@ Page {
             value: 0.0
         }
     }
+
+    GroupBox {
+        id: aboutBox
+        x: 10
+        y: 281
+        width: 582
+        height: 308
+        title: qsTr("About")
+
+        TextArea {
+            id: textArea
+            text: qsTr("A scouting app provided by FRC Team 237. Works in conjunction with Palantíri server. This App is provided under the GPL licence.
+
+App Website and docs: https://github.com/DannyGGWP/PalantiriApp
+
+Server website and docs: https://github.com/DannyGGWP/PalantiriServer
+
+Powered by: QT
+
+© Team 237")
+            anchors.bottomMargin: -6
+            anchors.fill: parent
+            wrapMode: Text.WordWrap
+        }
+    }
 }
 
 /*##^##
 Designer {
-    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}
+    D{i:4;anchors_y:20}D{i:2;anchors_x:10;anchors_y:0}D{i:16;anchors_x:8;anchors_y:8}
 }
 ##^##*/
 
