@@ -34,6 +34,7 @@ Page {
         font.pixelSize: Qt.application.font.pixelSize * 4
         padding: 10
     }
+
     // All Propery Aliases to be vable to do real work in main.qml
     property alias autoLowText: autoLowText
     property alias autoLowPlus: autoLowPlus

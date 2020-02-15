@@ -193,6 +193,7 @@ Page {
 
         TextArea {
             id: textArea
+            enabled: false
             text: qsTr("A scouting app provided by FRC Team 237. Works in conjunction with Palantíri server. This App is provided under the GPL licence.
 
 App Website and docs: https://github.com/DannyGGWP/PalantiriApp
