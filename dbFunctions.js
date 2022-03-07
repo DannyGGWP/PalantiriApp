@@ -1,5 +1,5 @@
 var tableName = 'matches';
-const columns = ['team_number','match_number', 'auto_low_score', 'auto_high_score', 'low_score', 'high_score', 'drove_off_line', 'stage_two_wheel', 'stage_three_wheel', 'hang', 'balanced', 'played_defence' , 'won_match','notes']
+const columns = ['team_number','match_number', 'auto_low_score', 'auto_high_score', 'low_score', 'high_score', 'drove_off_line', 'hang_1', 'hang_2', 'hang_3', 'hang_4', 'played_defence' , 'won_match','notes']
 
 function getDbHandle()
 {

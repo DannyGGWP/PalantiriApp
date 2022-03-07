@@ -290,7 +290,7 @@ Page {
                     Switch {
                         id: stageTwoSwitch
                         x: 171
-                        text: qsTr("Stage 2 Wheel")
+                        text: qsTr("Hang Bar 1")
                         anchors.right: parent.right
                         anchors.rightMargin: -1
                         anchors.top: parent.top
@@ -300,7 +300,7 @@ Page {
                     Switch {
                         id: stageThreeSwitch
                         x: 171
-                        text: qsTr("Stage 3 Wheel")
+                        text: qsTr("Hang Bar 2")
                         anchors.right: parent.right
                         anchors.rightMargin: -1
                         anchors.top: stageTwoSwitch.bottom
@@ -309,22 +309,24 @@ Page {
 
                     Switch {
                         id: climbedSwitch
-                        x: 171
-                        text: qsTr("Climbed")
+                        x: 191
+                        width: 137
+                        height: 48
+                        text: qsTr("Hang Bar 3")
                         anchors.right: parent.right
-                        anchors.rightMargin: 40
+                        anchors.rightMargin: -6
                         anchors.top: stageThreeSwitch.bottom
-                        anchors.topMargin: 1
+                        anchors.topMargin: -9
                     }
 
                     Switch {
                         id: balancedSwitch
-                        x: 171
-                        text: qsTr("Balanced")
+                        x: 192
+                        text: qsTr("Hang Bar 4")
                         anchors.right: parent.right
-                        anchors.rightMargin: 34
+                        anchors.rightMargin: -1
                         anchors.top: climbedSwitch.bottom
-                        anchors.topMargin: 1
+                        anchors.topMargin: -4
                     }
 
                     Switch {
