@@ -41,10 +41,10 @@ void ScoutingClient::postMatch(const QVariantMap &results)
 //    while (!res->isFinished()) {
 
 //    }
-    qDebug() << res->readAll() << endl;
+    qDebug() << res->readAll();
 }
 
 void ScoutingClient::isFinished(QNetworkReply *reply)
 {
-
+ Q_UNUSED(reply);
 }

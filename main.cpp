@@ -27,7 +27,6 @@
 #include "scoutingclient.h"
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
     app.setOrganizationName("Team 237 Programming");
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("scoutingAPI",&sClient);
     DBExporter dbe(engine.offlineStorageDatabaseFilePath("CompMatchDB"));
     engine.rootContext()->setContextProperty("exporter", &dbe);
-    ts << engine.offlineStoragePath() << endl;
+    ts << engine.offlineStoragePath();
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
